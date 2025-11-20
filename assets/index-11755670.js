@@ -986,16 +986,22 @@ let gi = new T();
 
 
 /* Drawing Functions */
-
 /* Example drawing function: you can add multiple drawing functions
 that will be called in sequence each frame. It's a good idea to do 
 one function per each object you are putting on screen, and you
 may then want to break your drawing function down into sub-functions
 to make it easier to read/follow */
+let px=200;
+let py=400;
 gi.addDrawing(
   function ({ ctx, width, height, elapsed, stepTime }) {
-    // Your drawing code here...    
-  }
+    // player
+    ctx.beginPath();
+    ctx.fillStyle = "blue";
+    ctx.arc(px, py, 10, 0, Math.PI * 2);
+    ctx.fill();
+  
+}
 );
 
 /* Input Handlers */
@@ -1003,14 +1009,28 @@ gi.addDrawing(
 /* Example: Mouse click handler (you can change to handle 
 any type of event -- keydown, mousemove, etc) */
 
-gi.addEventListener(
-  "click",
+gi.addHandler(
+ 
+ "keydown",
   function ({ event, x, y }) {
-    // Your click handling code here...
+    // move down on "s" key
+    if (event.key === "s") {
+      py += 10;
+    } else if (event.key === "w") {
+      py -= 10;
+    } else if (event.key === "a") {
+      px -= 10;
+    } else if (event.key === "d") {
+      px += 10;
+    } 
+    else {
+      console.log("other key: " + event.key);
+    }
+  
   }
 );
 
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-c293f701.js.map
+//# sourceMappingURL=index-11755670.js.map
