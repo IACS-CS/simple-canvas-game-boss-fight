@@ -1,7 +1,7 @@
 /* Main game file: main.js */
-/* Game: [Your Game Name Here] */
-/* Authors: [Your Name(s) Here] */
-/* Description: [Short description of your game here] */
+/* Game: [boss fight] */
+/* Authors: [Robby and Jaydrien] */
+/* Description: [Survive the longest time] */
 /* Citations: [List any resources, libraries, tutorials, etc you used here] 
 /* Note: If you use significant AI help you should cite that here as well */
 /* including summaries of prompts and/or interactions you had with the AI */
@@ -21,16 +21,22 @@ let gi = new GameInterface();
 
 
 /* Drawing Functions */
-
 /* Example drawing function: you can add multiple drawing functions
 that will be called in sequence each frame. It's a good idea to do 
 one function per each object you are putting on screen, and you
 may then want to break your drawing function down into sub-functions
 to make it easier to read/follow */
+let px=200
+let py=400
 gi.addDrawing(
   function ({ ctx, width, height, elapsed, stepTime }) {
-    // Your drawing code here...    
-  }
+    // player
+    ctx.beginPath();
+    ctx.fillStyle = "blue"
+    ctx.arc(px, py, 10, 0, Math.PI * 2);
+    ctx.fill();
+  
+}
 )
 
 /* Input Handlers */
@@ -38,10 +44,24 @@ gi.addDrawing(
 /* Example: Mouse click handler (you can change to handle 
 any type of event -- keydown, mousemove, etc) */
 
-gi.addEventListener(
-  "click",
+gi.addHandler(
+ 
+ "keydown",
   function ({ event, x, y }) {
-    // Your click handling code here...
+    // move down on "s" key
+    if (event.key === "s") {
+      py += 10
+    } else if (event.key === "w") {
+      py -= 10
+    } else if (event.key === "a") {
+      px -= 10
+    } else if (event.key === "d") {
+      px += 10
+    } 
+    else {
+      console.log("other key: " + event.key)
+    }
+  
   }
 )
 
