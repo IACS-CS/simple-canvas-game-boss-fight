@@ -54,10 +54,11 @@ function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "orange"
   // Draw blip at position determined by angle
   // angle, every 20 pixels going out from the center
-  // update angle based on elapsed time for smooth animation
-  angle += stepTime * 0.002;
+  // update angle based on elapsed time for smooth animation (slower)
+  // increment only once per frame (first attack block runs before the others)
+  angle += stepTime * 0.0006;
 
-  // draw small blips along the ray defined by `angle`, stepping outward every 20px
+  // draw small blips along the ray defined by `angle`, stepping outward every 50px
   for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
     const x = midx + Math.cos(angle) * radius;
     const y = midy + Math.sin(angle) * radius;
@@ -68,9 +69,52 @@ function ({ ctx, width, height, elapsed, stepTime }) {
   //attack circles around boss
   
 })
-
-
-
+//second set of attack circles
+gi.addDrawing(
+function ({ ctx, width, height, elapsed, stepTime }) {
+  ctx.fillStyle = "yellow"
+  // Draw blip at position determined by angle
+  // angle, every 20 pixels going out from the center
+  // draw small blips on the 90° rotated ray (no extra angle increment here)
+  for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+    const x = midx + Math.cos(angle + Math.PI / 2) * radius;
+    const y = midy + Math.sin(angle + Math.PI / 2) * radius;
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  //attack circles around boss
+})
+//and again more attack
+gi.addDrawing(
+function ({ ctx, width, height, elapsed, stepTime }) {
+  ctx.fillStyle = "purple"
+  // Draw blip at position determined by angle
+  // angle, every 20 pixels going out from the center
+  // draw small blips on the 180° rotated ray (opposite side)
+  for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+    const x = midx + Math.cos(angle + Math.PI) * radius;
+    const y = midy + Math.sin(angle + Math.PI) * radius;
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  //attack circles around boss
+})
+// fourth side (270°)
+gi.addDrawing(
+function ({ ctx, width, height, elapsed, stepTime }) {
+  ctx.fillStyle = "green"
+  // draw small blips on the 270° rotated ray
+  for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+    const x = midx + Math.cos(angle + (3 * Math.PI) / 2) * radius;
+    const y = midy + Math.sin(angle + (3 * Math.PI) / 2) * radius;
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  //attack circles around boss
+})
 gi.addDrawing(
   function ({ ctx, width, height, elapsed, stepTime }) {
     // player
@@ -80,6 +124,20 @@ gi.addDrawing(
     ctx.fill();
 }
 )
+//hearts
+gi.addDrawing(
+  function ({ ctx, width, height, elapsed, stepTime }) {
+    ctx.fillStyle = "red"
+    ctx.moveTo(10,10)
+    ctx.arc(10,10,10,0, Math.PI, true);
+    ctx.arc(30,10,10,0, Math.PI, true);
+    ctx.moveTo(40,10)
+    ctx.lineTo(20,30);
+    ctx.lineTo(0,10);
+    ctx.fill();
+}
+)
+//if player touches blip remove a heart
 
 
 //
@@ -114,5 +172,4 @@ gi.addHandler(
 
 /* Run the game */
 gi.run();
-
 
