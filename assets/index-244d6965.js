@@ -981,9 +981,6 @@ class T extends p {
 /* Main game file: main.js */
 
 let gi = new T();
-
-/* Variables: Top-Level variables defined here are used to hold game state */
-
 let midx= 700;
 let midy=400;
 
@@ -1082,13 +1079,14 @@ function ({ ctx, width, height, elapsed, stepTime }) {
 gi.addDrawing(
   function ({ ctx, width, height, elapsed, stepTime }) {
     // player
-    ctx.beginPath();
     ctx.fillStyle = "blue";
+    ctx.beginPath();
     ctx.arc(px, py, 10, 0, Math.PI * 2);
     ctx.fill();
 }
 );
 //hearts
+
 gi.addDrawing(
   function ({ ctx, width, height, elapsed, stepTime }) {
     ctx.fillStyle = "red";
@@ -1124,7 +1122,7 @@ gi.addHandler(
     } else if (event.key === "d") {
       px += 10;
     }
-    //diaginal movement by pressing two keys at once
+    //diagonal movement by pressing two keys at once
 
     else {
       console.log("other key: " + event.key);
@@ -1136,4 +1134,4 @@ gi.addHandler(
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-311545a4.js.map
+//# sourceMappingURL=index-244d6965.js.map
