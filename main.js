@@ -18,7 +18,7 @@ import { GameInterface } from 'simple-canvas-library';
 let gi = new GameInterface();
 
 /* Variables: Top-Level variables defined here are used to hold game state */
-
+let heart=1
 let midx= 700
 let midy=400
 let b=100
@@ -118,13 +118,14 @@ function ({ ctx, width, height, elapsed, stepTime }) {
 gi.addDrawing(
   function ({ ctx, width, height, elapsed, stepTime }) {
     // player
-    ctx.beginPath();
     ctx.fillStyle = "blue"
+    ctx.beginPath();
     ctx.arc(px, py, 10, 0, Math.PI * 2);
     ctx.fill();
 }
 )
 //hearts
+
 gi.addDrawing(
   function ({ ctx, width, height, elapsed, stepTime }) {
     ctx.fillStyle = "red"
@@ -160,7 +161,7 @@ gi.addHandler(
     } else if (event.key === "d") {
       px += 10
     }
-    //diaginal movement by pressing two keys at once
+    //diagonal movement by pressing two keys at once
 
     else {
       console.log("other key: " + event.key)
