@@ -34,6 +34,10 @@ let midy = 400;
 //player position
 let px = 100;
 let py = 200;
+//collision checks
+const dxBoss = px - midx;
+const dyBoss = py - midy;
+const distanceBoss = Math.sqrt(dxBoss * dxBoss + dyBoss * dyBoss);
 
 // angle for blips (stupid ass name- robert)
 let angle = 0; // in radians
@@ -136,9 +140,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   let isCollidingThisFrame = false;
 
   // Check collision with boss
-  const dxBoss = px - midx;
-  const dyBoss = py - midy;
-  const distanceBoss = Math.sqrt(dxBoss * dxBoss + dyBoss * dyBoss);
+ 
   if (distanceBoss < playerRadius + bossRadius) {
     isCollidingThisFrame = true;
   }
