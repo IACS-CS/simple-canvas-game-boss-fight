@@ -1050,7 +1050,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   }
   //attack circles around boss
 });
-//and again more attack
+//Purple set of blips
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "purple";
   // Draw blip at position determined by angle
@@ -1065,7 +1065,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   }
   //attack circles around boss
 });
-// fourth side (270°)
+// fourth side of blips (270°)
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "green";
   // draw small blips on the 270° rotated ray
@@ -1223,4 +1223,4 @@ gi.addHandler("keydown", function ({ event, x, y }) {
 
 /* Run the game */
 gi.run();
-//# sourceMappingURL=index-9db9cb48.js.map
+//# sourceMappingURL=index-952dbb50.js.map
