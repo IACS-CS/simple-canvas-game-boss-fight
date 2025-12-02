@@ -23,10 +23,15 @@ let gameOverState = false;
 let points = 0;
 let lastScoreTime = 0;
 let heart = 1;
-
+//sizes of the gaps between blips
+let green =  45
+let yellow = 40
+let purple = 50
+let orange = 35
+//boss position
 let midx = 700;
 let midy = 400;
-
+//player position
 let px = 100;
 let py = 200;
 
@@ -62,7 +67,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   angle += stepTime * 0.0006;
 
   // draw small blips along the ray defined by `angle`, stepping outward every 50px
-  for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+  for (let radius = 50; radius < Math.max(width, height) / 2; radius += orange) {
     const x = midx + Math.cos(angle) * radius;
     const y = midy + Math.sin(angle) * radius;
     ctx.beginPath();
@@ -77,7 +82,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   // Draw blip at position determined by angle
   // angle, every 20 pixels going out from the center
   // draw small blips on the 90° rotated ray (no extra angle increment here)
-  for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+  for (let radius = 50; radius < Math.max(width, height) / 2; radius += yellow) {
     const x = midx + Math.cos(angle + Math.PI / 2) * radius;
     const y = midy + Math.sin(angle + Math.PI / 2) * radius;
     ctx.beginPath();
@@ -92,7 +97,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   // Draw blip at position determined by angle
   // angle, every 20 pixels going out from the center
   // draw small blips on the 180° rotated ray (opposite side)
-  for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+  for (let radius = 50; radius < Math.max(width, height) / 2; radius += purple) {
     const x = midx + Math.cos(angle + Math.PI) * radius;
     const y = midy + Math.sin(angle + Math.PI) * radius;
     ctx.beginPath();
@@ -104,8 +109,8 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 // fourth side of blips (270°)
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "green";
-  // draw small blips on the 270° rotated ray
-  for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+  // draw small green blips on the 270° rotated ray
+  for (let radius = 50; radius < Math.max(width, height) / 2; radius += green) {
     const x = midx + Math.cos(angle + (3 * Math.PI) / 2) * radius;
     const y = midy + Math.sin(angle + (3 * Math.PI) / 2) * radius;
     ctx.beginPath();
@@ -140,7 +145,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 
   // Check collision with orange blips (angle)
   if (!isCollidingThisFrame) {
-    for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+    for (let radius = 50; radius < Math.max(width, height) / 2; radius += orange) {
       const x = midx + Math.cos(angle) * radius;
       const y = midy + Math.sin(angle) * radius;
       const dx = px - x;
@@ -155,7 +160,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 
   // Check collision with yellow blips (angle + PI/2)
   if (!isCollidingThisFrame) {
-    for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+    for (let radius = 50; radius < Math.max(width, height) / 2; radius += yellow) {
       const x = midx + Math.cos(angle + Math.PI / 2) * radius;
       const y = midy + Math.sin(angle + Math.PI / 2) * radius;
       const dx = px - x;
@@ -170,7 +175,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 
   // Check collision with purple blips (angle + PI)
   if (!isCollidingThisFrame) {
-    for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+    for (let radius = 50; radius < Math.max(width, height) / 2; radius += purple) {
       const x = midx + Math.cos(angle + Math.PI) * radius;
       const y = midy + Math.sin(angle + Math.PI) * radius;
       const dx = px - x;
@@ -185,7 +190,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 
   // Check collision with green blips (angle + 3*PI/2)
   if (!isCollidingThisFrame) {
-    for (let radius = 50; radius < Math.max(width, height) / 2; radius += 50) {
+    for (let radius = 50; radius < Math.max(width, height) / 2; radius += green) {
       const x = midx + Math.cos(angle + (3 * Math.PI) / 2) * radius;
       const y = midy + Math.sin(angle + (3 * Math.PI) / 2) * radius;
       const dx = px - x;
