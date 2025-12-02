@@ -26,7 +26,6 @@ let heart = 1;
 
 let midx = 700;
 let midy = 400;
-let b = 100;
 
 let px = 100;
 let py = 200;
@@ -87,7 +86,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   }
   //attack circles around boss
 });
-//and again more attack
+//Purple set of blips
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "purple";
   // Draw blip at position determined by angle
@@ -102,7 +101,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   }
   //attack circles around boss
 });
-// fourth side (270°)
+// fourth side of blips (270°)
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "green";
   // draw small blips on the 270° rotated ray
