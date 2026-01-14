@@ -81,7 +81,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   }
 });
 //boss attack
-
+/*AI generated the following four drawing functions to create rotating blips */
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fillStyle = "orange";
   // Draw blip at position determined by angle
@@ -155,6 +155,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   }
   //attack circles around boss
 });
+//AI generated code for blip drawing and rotating ends here
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   // player
   ctx.fillStyle = "blue";
@@ -163,18 +164,26 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   ctx.fill();
 });
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
-  // Your drawing code here...
+  /*Several HUD elements and text based events*/
   ctx.fillStyle = "green";
   ctx.font = "20px Arial";
   ctx.fillText(`Score - ${points}`, 20, 20);
   ctx.fillText(`Health - ${heart}`, 20, 50);
+  //sets cheater flag if player goes off screen so score doesn't add up
   if (px >= width || px <= 0 || py >= height || py <= 0) {
     cheater = true;
     ctx.fillText(`Get back here.`, width / 2, height / 2);
   } else {
+    //resets cheater flag if player is back on screen
     cheater = false;
-  } if (points <= 10) {
-    ctx.fillText(`Use WASD or Arrow keys to move!`, width / 2 - 100, height - 20);
+  }
+  if (points <= 10) {
+    //tutorial text for movement, doesn't stay forever
+    ctx.fillText(
+      `Use WASD or Arrow keys to move!`,
+      width / 2 - 100,
+      height - 20
+    );
   }
 });
 //timer that prevents damage being dealt every frame
@@ -188,7 +197,7 @@ function iframeTimer(stepTime) {
 gi.addDrawing(function ({ stepTime }) {
   iframeTimer(stepTime);
 });
-// Collision detection: check if player touches blips or boss
+//AI generated code: Collision detection: check if player touches blips or boss
 gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
   const playerRadius = 5; // Player collision radius
   const blipRadius = 5; // Blip collision radius
@@ -196,12 +205,12 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 
   let isCollidingThisFrame = false;
 
-  // Only check for collisions if invincibility frames are not active
+  // AI generated code in response to "Can you make isCollidingThisFrame be false when iFrame is above 0?" Only check for collisions if invincibility frames are not active
   if (iframe === 0) {
     // Update boss position to center of canvas
     bossX = width / 2;
     bossY = height / 2;
-
+    //AI generated code for distance formulas
     // Check collision with boss (recalculate distance each frame)
     const dxBoss = px - bossX;
     const dyBoss = py - bossY;
@@ -283,6 +292,7 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
         if (distance < playerRadius + blipRadius) {
           isCollidingThisFrame = true;
           break;
+          // AI generated code for distance formulas ends here
         }
       }
     }
@@ -324,11 +334,13 @@ gi.addDrawing(function ({ ctx, width, height, elapsed, stepTime }) {
 function triggerGameOver() {
   gameOverState = true;
   gi.pause();
+  //AI generated code in response to "Can you make a game over dialog that shows the final score and a message based on performance?"
   gi.dialog(
     "Game Over!",
     `Your final score is ${points}. ${gameOverText}`,
     () => {
       window.location.reload();
+      //AI generated code ends here
     }
   );
 }
@@ -339,6 +351,7 @@ function triggerGameOver() {
 /* Input Handlers */
 
 /* Set up keyboard event handlers to track which keys are pressed (AI generated) */
+//AI generated code in response to "Can you make WASD and Arrow key controls for the blue circle player?"
 gi.addHandler("keydown", ({ event }) => {
   const key = event.key.toLowerCase();
   if (key === "w") keysDown.w = true;
@@ -362,8 +375,8 @@ gi.addHandler("keyup", ({ event }) => {
   if (event.key === "ArrowDown") keysDown.s = false;
   if (event.key === "ArrowRight") keysDown.d = false;
 });
-
-/* Handle player movement (AI generated) */
+//AI generated code for WASD and Arrow key controls ends here
+/* Handle player movement */
 gi.addDrawing(function ({ stepTime, width, height }) {
   // Handle upward movement
   if (keysDown.w) {
